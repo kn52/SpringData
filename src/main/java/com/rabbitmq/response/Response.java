@@ -8,7 +8,7 @@ public class Response {
 
     private Object object;
 
-    public Response(String message, String status, Object object) {
+    public Response(String message, int status, Object object) {
         this.message = message;
         this.status = status;
         this.object = object;
