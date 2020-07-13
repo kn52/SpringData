@@ -2,7 +2,8 @@ package com.rabbitmq.exception;
 
 public class StudentException extends RuntimeException {
 
-    enum ExceptionType {
+    public enum ExceptionType {
+        ALREADY_EXIST
     }
 
     public ExceptionType exceptionType;

@@ -2,7 +2,7 @@ package com.rabbitmq.request;
 
 public class Request {
 
-    public Long id;
+    public long id;
 
     public String name;
 
@@ -10,16 +10,19 @@ public class Request {
 
     public String course;
 
-    public String course_duration;
+    public long course_duration;
 
-    public String semester;
+    public long semester;
 
-    public String year_of_passing;
+    public long year_of_passing;
 
     public String address;
 
-    public Request(Long id, String name, String email, String course, String course_duration,
-                    String semester, String year_of_passing, String address) {
+    public Request() {
+    }
+
+    public Request(long id, String name, String email, String course, long course_duration,
+                   long semester, long year_of_passing, String address) {
         this.id = id;
         this.name = name;
         this.email = email;

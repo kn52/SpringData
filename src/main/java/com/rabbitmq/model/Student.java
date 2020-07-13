@@ -13,7 +13,7 @@ public class Student {
 
     @Id
     @Column(name = "ID")
-    public Long id;
+    public long id;
 
     @Column(name = "NAME")
     public String name;
@@ -25,16 +25,19 @@ public class Student {
     public String course;
 
     @Column(name = "COURSE_DURATION")
-    public String course_duration;
+    public long course_duration;
 
     @Column(name = "SEMESTER")
-    public String semester;
+    public long semester;
 
     @Column(name = "YEAR_OF_PASSING")
-    public String year_of_passing;
+    public long year_of_passing;
 
     @Column(name = "ADDRESS")
     public String address;
+
+    public Student() {
+    }
 
     public Student(Request request) {
         this.id = request.id;
@@ -47,7 +50,7 @@ public class Student {
         this.address = request.address;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -61,15 +64,15 @@ public class Student {
         return course;
     }
 
-    public String getCourse_duration() {
+    public long getCourse_duration() {
         return course_duration;
     }
 
-    public String getSemester() {
+    public long getSemester() {
         return semester;
     }
 
-    public String getYear_of_passing() {
+    public long getYear_of_passing() {
         return year_of_passing;
     }
 
