@@ -20,6 +20,7 @@ public class StudentService implements IStudentService {
     public Response addStudent(Request request) {
 
         Optional<Student> existingStudent=studentRepository.findById(request.id);
+
         if(existingStudent == null){
             throw new StudentException("Student Already Exist With this ID", StudentException.ExceptionType.ALREADY_EXIST);
         }
