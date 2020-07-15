@@ -2,15 +2,18 @@ package com.rabbitmq.response;
 
 public class Response {
 
-    private String message;
+    public String message;
 
-    private int status;
+    public int status;
 
-    private Object object;
+    public Object response;
 
-    public Response(String message, int status, Object object) {
+    public Response() {
+    }
+
+    public Response(String message, int status, Object response) {
         this.message = message;
         this.status = status;
-        this.object = object;
+        this.response = response;
     }
 }

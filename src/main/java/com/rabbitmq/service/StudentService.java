@@ -26,6 +26,6 @@ public class StudentService implements IStudentService {
         }
         Student newStudent=new Student(request);
         studentRepository.save(newStudent);
-        return new Response("Student Added Sucessfully",200,newStudent.name);
+        return new Response("Student Added Sucessfully", 200, newStudent.name);
     }
 }
