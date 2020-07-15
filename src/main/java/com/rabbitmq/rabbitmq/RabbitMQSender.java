@@ -20,6 +20,6 @@ public class RabbitMQSender implements IRabbitMQSender {
 
     public Response send(String email) {
         rabbitTemplate.convertAndSend(exchange, routingkey, email);
-        return new Response("Message sent to the RabbitMQ JavaInUse Successfully",200,"");
+        return new Response("Message sent Successfully",200,"");
     }
 }
