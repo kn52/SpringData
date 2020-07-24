@@ -30,4 +30,10 @@ public class StudentController {
         Response response=studentService.getAllStudent();
         return new ResponseEntity<Response>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/all")
+    private ResponseEntity<Response> getStudent(@RequestParam(value="studentid") long student_id){
+        Response response=studentService.getStudent(student_id);
+        return new ResponseEntity<Response>(response, HttpStatus.OK);
+    }
 }

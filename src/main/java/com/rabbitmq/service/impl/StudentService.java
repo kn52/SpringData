@@ -40,8 +40,17 @@ public class StudentService implements IStudentService {
     public Response getAllStudent() {
         List<Student> allStudents = studentRepository.findAll();
         if(allStudents !=null){
-            throw new StudentException("No Student Found", StudentException.ExceptionType.NO_STUDENT_FOUND);
+            throw new StudentException("No Student Found", StudentException.ExceptionType.STUDENTS_NOT_FOUND);
         }
         return new Response("Students Found Successfully",200,allStudents);
+    }
+
+    @Override
+    public Response getStudent(long student_id) {
+        Optional<Student> student=studentRepository.findById(student_id);
+        if(student.isPresent()){
+            return new Response("Student Found",200,student.get());
+        }
+        throw new StudentException("No Student Found", StudentException.ExceptionType.NO_STUDENT_FOUND);
     }
 }
