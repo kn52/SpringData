@@ -3,7 +3,7 @@ package com.rabbitmq.exception;
 public class StudentException extends RuntimeException {
 
     public enum ExceptionType {
-        ALREADY_EXIST
+        NO_STUDENT_FOUND, ALREADY_EXIST
     }
 
     public ExceptionType exceptionType;

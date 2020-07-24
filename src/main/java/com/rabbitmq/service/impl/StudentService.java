@@ -1,17 +1,23 @@
-package com.rabbitmq.service;
+package com.rabbitmq.service.impl;
 
 import com.rabbitmq.exception.StudentException;
 import com.rabbitmq.model.Student;
+import com.rabbitmq.rabbitmq.impl.RabbitMQSender;
 import com.rabbitmq.repository.IStudentRepository;
 import com.rabbitmq.request.Request;
 import com.rabbitmq.response.Response;
+import com.rabbitmq.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class StudentService implements IStudentService {
+
+    @Autowired
+    RabbitMQSender rabbitMQSender;
 
     @Autowired
     IStudentRepository studentRepository;
@@ -26,6 +32,16 @@ public class StudentService implements IStudentService {
         }
         Student newStudent=new Student(request);
         studentRepository.save(newStudent);
+        rabbitMQSender.send(request);
         return new Response("Student Added Sucessfully", 200, newStudent.name);
+    }
+
+    @Override
+    public Response getAllStudent() {
+        List<Student> allStudents = studentRepository.findAll();
+        if(allStudents !=null){
+            throw new StudentException("No Student Found", StudentException.ExceptionType.NO_STUDENT_FOUND);
+        }
+        return new Response("Students Found Successfully",200,allStudents);
     }
 }

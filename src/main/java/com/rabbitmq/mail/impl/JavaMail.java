@@ -1,6 +1,7 @@
 package com.rabbitmq.mail.impl;
 
 import com.rabbitmq.mail.IJavaMail;
+import com.rabbitmq.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -27,7 +28,22 @@ public class JavaMail implements IJavaMail {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-
         return true;
+    }
+
+    @Override
+    public void sendMail(Request request, String studentMessage) {
+        MimeMessage message= javaMailSender.createMimeMessage();
+        MimeMessageHelper messageHelper=new MimeMessageHelper(message);
+        try {
+            messageHelper.setTo("ashish52922@gmail.com");
+            messageHelper.setSubject("Student Registration");
+            messageHelper.setText(studentMessage);
+            javaMailSender.send(message);
+            System.out.println("Student Name: "+request.name);
+            System.out.println("Student Message: "+studentMessage);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 }
